@@ -1,6 +1,7 @@
+import Dispenser from "./Dispenser"
 import Sequence from "./Sequence/Sequence"
 
-export default class Ticketing {
+export default class Ticketing implements Dispenser {
     private turn
 
     constructor(private sequence: Sequence) {
