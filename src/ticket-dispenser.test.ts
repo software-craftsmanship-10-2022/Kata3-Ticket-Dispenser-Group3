@@ -1,31 +1,32 @@
 import Dispenser from "./ticket-dispenser";
+import { TurnNumberSequence } from "./turn-number-sequence";
+import TurnTicket, { Ticket } from "./turn-ticket";
 
-const TurnNumberSequence = require("./turn-number-sequence");
-jest.mock("./turn-number-sequence");
-const TicketDispenser = require("./ticket-dispenser");
-jest.mock("./ticket-dispenser");
+//jest.mock("./turn-number-sequence");
 
 describe("given a TicketDispenser", () => {
+  let sequence = new TurnNumberSequence();
   beforeEach(() => {
-    (TurnNumberSequence as jest.Mock).mockClear();
-    (TicketDispenser as jest.Mock).mockClear();
+    sequence = new TurnNumberSequence();
+    //  (TurnNumberSequence as jest.Mock).mockClear();
   });
 
-  test("should be able to dispense a turn ticket", () => {
-    const dispenser = new Dispenser(TurnNumberSequence, TicketDispenser);
+  it("should be able to dispense a turn ticket", () => {
+    const dispenser = new Dispenser(sequence, TurnTicket);
     const ticket = dispenser.getTurnTicket();
-    expect(ticket.getTicketNumber()).toBe(0);
+
+    expect(ticket).toBeInstanceOf(Ticket);
   });
-  test("when called in sequence turn number should increase", () => {
-    const dispenser = new Dispenser(TurnNumberSequence, TicketDispenser);
+  it("when called in sequence the ticket's turn number should increase", () => {
+    const dispenser = new Dispenser(sequence, TurnTicket);
     const ticket1 = dispenser.getTurnTicket();
     expect(ticket1.getTicketNumber()).toBe(0);
     const ticket2 = dispenser.getTurnTicket();
     expect(ticket2.getTicketNumber()).toBe(1);
   });
-  test("two separate dispensers shoud return consecutive numbers", () => {
-    const dispenser1 = new Dispenser(TurnNumberSequence, TicketDispenser);
-    const dispenser2 = new Dispenser(TurnNumberSequence, TicketDispenser);
+  it("two separate dispensers shoud return turn tickets with consecutive numbers", () => {
+    const dispenser1 = new Dispenser(sequence, TurnTicket);
+    const dispenser2 = new Dispenser(sequence, TurnTicket);
     const ticket1 = dispenser1.getTurnTicket();
     const ticket2 = dispenser2.getTurnTicket();
     expect(ticket1.getTicketNumber()).toBe(0);

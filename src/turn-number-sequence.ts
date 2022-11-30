@@ -2,7 +2,7 @@ export interface Sequence {
   getNextNumber(): number;
 }
 
-class TurnNumberSequence implements Sequence {
+export class TurnNumberSequence implements Sequence {
   private turnNumber: number;
 
   constructor() {
