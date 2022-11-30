@@ -1,5 +1,9 @@
-export class Sequence {
-  public turnNumber: number;
+export type SequenceType = {
+  getNextNumber(): number;
+};
+
+export class TurnNumberSequence implements SequenceType {
+  private turnNumber: number;
   constructor() {
     this.turnNumber = 0;
   }
@@ -7,13 +11,3 @@ export class Sequence {
     return this.turnNumber++;
   }
 }
-
-export class TurnNumberSequence extends Sequence {
-  constructor() {
-    super();
-  }
-}
-
-const sequence = new TurnNumberSequence();
-
-export default sequence;

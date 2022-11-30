@@ -1,15 +1,13 @@
-export class Ticket {
-  ticketNumber: number;
+export type TicketType = {
+  getTicketNumber(): number;
+};
+
+export class TurnTicket implements TicketType {
+  private ticketNumber: number;
   constructor(number: number) {
     this.ticketNumber = number;
   }
   public getTicketNumber() {
     return this.ticketNumber;
-  }
-}
-
-export default class TurnTicket extends Ticket {
-  constructor(number: number) {
-    super(number);
   }
 }
