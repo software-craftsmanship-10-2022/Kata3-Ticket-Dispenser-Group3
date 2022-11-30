@@ -8,4 +8,8 @@ export class Ticket {
   }
 }
 
-export default class TurnTicket extends Ticket {}
+export default class TurnTicket extends Ticket {
+  constructor(number: number) {
+    super(number);
+  }
+}
