@@ -1,14 +1,16 @@
 import Dispenser from "./ticket-dispenser";
-import { TurnNumberSequence } from "./turn-number-sequence";
+import { Sequence } from "./turn-number-sequence";
 import TurnTicket, { Ticket } from "./turn-ticket";
 
-//jest.mock("./turn-number-sequence");
-
-describe("given a TicketDispenser", () => {
-  let sequence = new TurnNumberSequence();
+class fakeSequence extends Sequence {
+  resetSequence() {
+    this.turnNumber = 0;
+  }
+}
+describe("given a Dispenser", () => {
+  let sequence = new fakeSequence();
   beforeEach(() => {
-    sequence = new TurnNumberSequence();
-    //  (TurnNumberSequence as jest.Mock).mockClear();
+    sequence.resetSequence();
   });
 
   it("should be able to dispense a turn ticket", () => {

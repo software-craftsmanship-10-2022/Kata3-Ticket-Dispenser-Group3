@@ -1,5 +1,5 @@
 export class Sequence {
-  private turnNumber: number;
+  public turnNumber: number;
   constructor() {
     this.turnNumber = 0;
   }
