@@ -1,12 +1,12 @@
 import Ticketing from "./Ticketing"
 import TurnNumberBasedSequence from "./Sequence/TurnNumberBasedSequence";
 
-const sequence = new TurnNumberBasedSequence()
-const firstTicketingSystem = new Ticketing(sequence)
-const secondTicketingSystem = new Ticketing(sequence)
-const thirdTicketingSystem = new Ticketing(sequence)
-
 describe('Given a Ticketing system', () => {
+    const sequence = new TurnNumberBasedSequence()
+    const firstTicketingSystem = new Ticketing(sequence)
+    const secondTicketingSystem = new Ticketing(sequence)
+    const thirdTicketingSystem = new Ticketing(sequence)
+
     beforeEach(() => {
         firstTicketingSystem.clear()
         secondTicketingSystem.clear()  
