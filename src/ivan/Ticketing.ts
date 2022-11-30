@@ -1,23 +1,24 @@
+import Ticket from "./Ticket"
 import Dispenser from "./Dispenser"
 import Sequence from "./Sequence/Sequence"
 
 export default class Ticketing implements Dispenser {
-    private turn
+    private ticket: Ticket
 
     constructor(private sequence: Sequence) {
-        this.turn = this.sequence.clear()
+        this.ticket = new Ticket(this.sequence.clear())
     }
 
-    getTurn(): number {
-        return this.turn
+    getTurn(): Ticket {
+        return this.ticket
     }
 
-    getNextTurn(): number {
-        this.turn = this.sequence.ask()
-        return this.turn
+    getNextTurn(): Ticket {
+        this.ticket = new Ticket(this.sequence.ask())
+        return this.ticket
     } 
 
-    clear() {
-        this.turn = this.sequence.clear()
+    clear(): void {
+        this.ticket = new Ticket(this.sequence.clear())
     }
 }

@@ -1,28 +1,28 @@
+import Ticket from "./Ticket";
 import Ticketing from "./Ticketing"
 import TurnNumberBasedSequence from "./Sequence/TurnNumberBasedSequence";
 
 describe('Given a Ticketing system', () => {
-    const sequence = new TurnNumberBasedSequence()
-    const firstTicketingSystem = new Ticketing(sequence)
-    const secondTicketingSystem = new Ticketing(sequence)
-    const thirdTicketingSystem = new Ticketing(sequence)
+    let sequence: TurnNumberBasedSequence
+    let firstTicketingSystem: Ticketing
+    let secondTicketingSystem: Ticketing
+    let thirdTicketingSystem: Ticketing
 
     beforeEach(() => {
-        sequence.clear()
-        firstTicketingSystem.clear()
-        secondTicketingSystem.clear()  
-        thirdTicketingSystem.clear()
+      sequence = new TurnNumberBasedSequence()
+      firstTicketingSystem = new Ticketing(sequence)
+      secondTicketingSystem = new Ticketing(sequence)
+      thirdTicketingSystem = new Ticketing(sequence)
     })
-
     it('should give number 1 as the first turn', () => {
         // ARRANGE
         const expectedTurn = 1
 
         // ACT
-        const turn = firstTicketingSystem.getTurn()
+        const turn: Ticket = firstTicketingSystem.getTurn()
 
         // ASSERT
-        expect(turn).toBe(expectedTurn)
+        expect(turn.value()).toBe(expectedTurn)
     })
 
     it('should increase by 1 when asking for a new turn', () => {
@@ -33,7 +33,7 @@ describe('Given a Ticketing system', () => {
         const turn = firstTicketingSystem.getNextTurn()
 
         // ASSERT
-        expect(turn).toBe(expectedTurn)
+        expect(turn.value()).toBe(expectedTurn)
     })
 
     it('should give 2 consecutive numbers to two different customers', () => {
@@ -46,8 +46,8 @@ describe('Given a Ticketing system', () => {
         const secondCustomerTurn = firstTicketingSystem.getNextTurn()
 
         // ASSERT
-        expect(firstCustomerTurn).toBe(firstCustomerExpectedTurn)
-        expect(secondCustomerTurn).toBe(secondCustomerExpectedTurn)
+        expect(firstCustomerTurn.value()).toBe(firstCustomerExpectedTurn)
+        expect(secondCustomerTurn.value()).toBe(secondCustomerExpectedTurn)
     })
 
     it('should give consective numbers on different ticketing systems with the same sequence', () => {
@@ -62,9 +62,9 @@ describe('Given a Ticketing system', () => {
         const thirdTicketingTurn = thirdTicketingSystem.getNextTurn()
 
         // ASSERT
-        expect(oneTicketingTurn).toBe(oneTicketingExpectedTurn)
-        expect(secondTicketingTurn).toBe(secondTicketingExpectedTurn)
-        expect(thirdTicketingTurn).toBe(thirdTicketingExpectedTurn)
+        expect(oneTicketingTurn.value()).toBe(oneTicketingExpectedTurn)
+        expect(secondTicketingTurn.value()).toBe(secondTicketingExpectedTurn)
+        expect(thirdTicketingTurn.value()).toBe(thirdTicketingExpectedTurn)
     })
 
     it('should reset the sequence when clearing it', () => {
@@ -82,7 +82,7 @@ describe('Given a Ticketing system', () => {
         const afterClearingTurn = firstTicketingSystem.getTurn()
 
         // ASSERT
-        expect(beforeClearingTurn).toBe(beforeClearingExpectedTurn)
-        expect(afterClearingTurn).toBe(afterClearingExpectedTurn)
+        expect(beforeClearingTurn.value()).toBe(beforeClearingExpectedTurn)
+        expect(afterClearingTurn.value()).toBe(afterClearingExpectedTurn)
     })
 })

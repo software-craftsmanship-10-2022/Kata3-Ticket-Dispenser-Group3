@@ -1,5 +1,7 @@
+import Ticket from "./Ticket"
+
 export default interface Dispenser {
-    getTurn(): number
-    getNextTurn(): number
+    getTurn(): Ticket
+    getNextTurn(): Ticket
     clear(): void
 }
