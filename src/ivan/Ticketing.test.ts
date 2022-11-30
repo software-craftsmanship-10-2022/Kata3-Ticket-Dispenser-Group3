@@ -8,6 +8,7 @@ describe('Given a Ticketing system', () => {
     const thirdTicketingSystem = new Ticketing(sequence)
 
     beforeEach(() => {
+        sequence.clear()
         firstTicketingSystem.clear()
         secondTicketingSystem.clear()  
         thirdTicketingSystem.clear()
