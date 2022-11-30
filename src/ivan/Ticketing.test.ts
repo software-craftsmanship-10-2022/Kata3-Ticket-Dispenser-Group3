@@ -8,16 +8,17 @@ describe('Given a Ticketing system', () => {
     const thirdTicketingSystem = new Ticketing(sequence)
 
     beforeEach(() => {
+        sequence.clear()
         firstTicketingSystem.clear()
         secondTicketingSystem.clear()  
         thirdTicketingSystem.clear()
     })
 
     it('should give number 1 as the first turn', () => {
-        // ASSING
+        // ARRANGE
         const expectedTurn = 1
 
-        // ARRANGE
+        // ACT
         const turn = firstTicketingSystem.getTurn()
 
         // ASSERT
@@ -25,10 +26,10 @@ describe('Given a Ticketing system', () => {
     })
 
     it('should increase by 1 when asking for a new turn', () => {
-        // ASSING
+        // ARRANGE
         const expectedTurn = 2
 
-        // ARRANGE
+        // ACT
         const turn = firstTicketingSystem.getNextTurn()
 
         // ASSERT
@@ -36,11 +37,11 @@ describe('Given a Ticketing system', () => {
     })
 
     it('should give 2 consecutive numbers to two different customers', () => {
-        // ASSIGN
+        // ARRANGE
         const firstCustomerExpectedTurn = 2
         const secondCustomerExpectedTurn = 3
 
-        // ARRANGE
+        // ACT
         const firstCustomerTurn = firstTicketingSystem.getNextTurn()
         const secondCustomerTurn = firstTicketingSystem.getNextTurn()
 
@@ -50,12 +51,12 @@ describe('Given a Ticketing system', () => {
     })
 
     it('should give consective numbers on different ticketing systems with the same sequence', () => {
-        // ASSING
+        // ARRANGE
         const oneTicketingExpectedTurn = 2
         const secondTicketingExpectedTurn = 3
         const thirdTicketingExpectedTurn = 4
 
-        // ARRANGE
+        // ACT
         const oneTicketingTurn = firstTicketingSystem.getNextTurn()
         const secondTicketingTurn = secondTicketingSystem.getNextTurn()
         const thirdTicketingTurn = thirdTicketingSystem.getNextTurn()
@@ -67,11 +68,11 @@ describe('Given a Ticketing system', () => {
     })
 
     it('should reset the sequence when clearing it', () => {
-        // ASSIGN
+        // ARRANGE
         const beforeClearingExpectedTurn = 4
         const afterClearingExpectedTurn = 1
 
-        // ARRANGE
+        // ACT
         firstTicketingSystem.getNextTurn()
         firstTicketingSystem.getNextTurn()
         firstTicketingSystem.getNextTurn()
